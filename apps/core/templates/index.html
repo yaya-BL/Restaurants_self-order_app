@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+<div id="homepage">
+  <v-app>
+    <v-main>
+      <v-container>
+        <v-alert
+        color="purple"
+        dark
+        border="top"
+        icon="mdi-home"
+        transition="scale-transition"
+        >
+        APIs For Food Order App
+        </v-alert>
+        <!--Auth Apis -->
+        <v-alert outlined color="red" >
+            <div class="title">
+              Authentication
+            </div>
+            <div>
+              <ul>
+                <li>User Sign Up : domain/authApis/sign-up</li>
+                <li>User Sign In : domain/authApis/sign-in</li>
+              </ul>
+            </div>
+        </v-alert>
+         <!--Auth Apis -->
+         <v-alert outlined color="red" >
+          <div class="title">
+            Register A Cafe
+          </div>
+          <div>
+            <ul>
+              <li>Register : domain/cafeApis/createCafe</li>
+              <li>Form Input : name, address</li>
+              <li>Token Input : cafe [user_id]</li>
+            </ul>
+          </div>
+      </v-alert>
+        <!--Category Apis -->
+        <v-alert outlined color="purple" >
+          <div class="title">
+            Item Category 
+          </div>
+          <div>
+            <ul>
+              <li>Category List : domain/itemApis/category-list</li>
+              <li>Category Detail : domain/itemApis/category-detail/id</str:pk></li>
+              <li>Category Create : domain/itemApis/category-create</li>
+              <li>Form Input : name, address</li>
+              <li>Token Input : user [user_id], cafe [cafe_id]</li>
+              <li>Category Update : domain/itemApis/category-update/id</li>
+              <li>Category Delete : domain/itemApis/category-delete/id</li>
+            </ul>
+          </div>
+        </v-alert>
+         <!--Item Apis -->
+         <v-alert outlined color="green" >
+          <div class="title">
+            Items 
+          </div>
+          <div >
+            <ul >
+              <li>Item List : domain/itemApis/item-list</li>
+              <li>Item Detail : domain/itemApis/item-detail/id</li>
+              <li>Item Create : domain/itemApis/item-create</li>
+              <li>Item Update : domain/itemApis/item-update/id</li>
+              <li>Item Delete : domain/itemApis/item-delete/id</li>
+            </ul>
+          </div>
+        </v-alert>
+      </v-container>
+    </v-main>
+  </v-app>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script>
+new Vue({
+    el: '#homepage',
+    vuetify: new Vuetify(),
+    delimiters: ['[[', ']]'],
+      data () {
+          return {
+            alert:'',
+          }
+      },
+  
+  })
+</script>
+</body>
+</html>
