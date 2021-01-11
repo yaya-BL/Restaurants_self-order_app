@@ -10,7 +10,7 @@ from rest_framework.decorators import api_view, permission_classes
 from .serializers import CategorySerializer, ItemSerializer
 # Model Class imports
 from .models import Category, Item
-from apps.cafe.models import Cafe
+from v1.shop.models import Cafe
 
 # APIs for category and Item
 @api_view(['GET'])

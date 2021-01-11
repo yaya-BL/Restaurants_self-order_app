@@ -41,10 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'apps.core',
-    'apps.cafe',
-    'apps.item',
-    
+    'v1.core',
+    'v1.shop',
+    'v1.item',
 ]
 
 REST_FRAMEWORK = {
@@ -146,14 +145,14 @@ USE_L10N = True
 
 USE_TZ = True
 
+#uncomment this and run collect static
+#STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+#comment this to run collect static
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'

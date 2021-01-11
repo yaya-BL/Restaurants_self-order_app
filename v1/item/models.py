@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from apps.cafe.models import Cafe
+from v1.shop.models import Cafe
 
 # Food Category model
 class Category(models.Model):

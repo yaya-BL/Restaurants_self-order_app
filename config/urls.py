@@ -1,7 +1,8 @@
 
 from django.contrib import admin
 from django.urls import path, include
-from apps.core.views import home
+from v1.core.views import home
+
 urlpatterns = [
     # Website Urls
     path('', home, name='homepage'),
@@ -9,8 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Api Urls
-    path('authApis/', include('apps.core.urls')),
-    path('itemApis/', include('apps.item.urls')),
-    path('cafeApis/', include('apps.cafe.urls')),
-    
+    path('authApis/', include('v1.core.urls')),
+    path('itemApis/', include('v1.item.urls')),
+    path('cafeApis/', include('v1.shop.urls')),
 ]
