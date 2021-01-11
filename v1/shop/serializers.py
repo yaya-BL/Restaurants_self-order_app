@@ -1,10 +1,7 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
-# Model Class imports
-from .models import Cafe
+from .models import Shop
 
-
-class CafeSerializer(serializers.ModelSerializer):
+class ShopSerializer(serializers.ModelSerializer):
   class Meta:
-    model = Cafe
-    fields = ['name', 'address']
+    model = Shop
+    fields = '__all__'

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Cafe
+from .models import Shop
 
-admin.site.register(Cafe)
+admin.site.register(Shop)
 
