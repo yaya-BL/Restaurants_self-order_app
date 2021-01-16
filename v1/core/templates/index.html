@@ -27,8 +27,8 @@
             </div>
             <div>
               <ul>
-                <li>User Sign Up : domain/authApis/sign-up</li>
-                <li>User Sign In : domain/authApis/sign-in</li>
+                <li>User Sign Up : v1/auth/register</li>
+                <li>User Sign In : v1/auth/login</li>
               </ul>
             </div>
         </v-alert>
@@ -39,7 +39,7 @@
           </div>
           <div>
             <ul>
-              <li>Register : domain/cafeApis/createCafe</li>
+              <li>Register : v1/shop/add</li>
               <li>Form Input : name, address</li>
               <li>Token Input : cafe [user_id]</li>
             </ul>
@@ -52,13 +52,13 @@
           </div>
           <div>
             <ul>
-              <li>Category List : domain/itemApis/category-list</li>
-              <li>Category Detail : domain/itemApis/category-detail/id</str:pk></li>
-              <li>Category Create : domain/itemApis/category-create</li>
+              <li>Category List : v1/category</li>
+              <li>Category Detail : v1/category/id </li>
+              <li>Category Create : v1/category/add </li>
               <li>Form Input : name, address</li>
               <li>Token Input : user [user_id], cafe [cafe_id]</li>
-              <li>Category Update : domain/itemApis/category-update/id</li>
-              <li>Category Delete : domain/itemApis/category-delete/id</li>
+              <li>Category Update : v1/category/id/edit </li>
+              <li>Category Delete : v1/category/id/delete </li>
             </ul>
           </div>
         </v-alert>
@@ -69,11 +69,11 @@
           </div>
           <div >
             <ul >
-              <li>Item List : domain/itemApis/item-list</li>
-              <li>Item Detail : domain/itemApis/item-detail/id</li>
-              <li>Item Create : domain/itemApis/item-create</li>
-              <li>Item Update : domain/itemApis/item-update/id</li>
-              <li>Item Delete : domain/itemApis/item-delete/id</li>
+              <li>Item List : v1/item/id/delete</li>
+              <li>Item Detail : v1/item/id </li>
+              <li>Item Create : v1/item/add </li>
+              <li>Item Update : v1/item/id/edit </li>
+              <li>Item Delete : v1/item/id/delete </li>
             </ul>
           </div>
         </v-alert>
