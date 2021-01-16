@@ -8,11 +8,14 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework import generics
 # Serializer Class imports
 from .serializers import CategorySerializer, ItemSerializer
 # Model Class imports
 from .models import Category, Item
 from v1.shop.models import Shop
+#importing pagination
+from .paginations import SmallOffsetPagination, SmallPagesPagination
 
 # APIs for category and Item
 @api_view(['GET'])
@@ -34,12 +37,11 @@ def apiOverview(request):
 
 # methods for category 
 # categoryList
-@api_view(['GET'])
-@permission_classes((IsAuthenticated,))
-def categoryList(request):
-  categories = Category.objects.all().order_by('-id')
-  serializer = CategorySerializer(categories, many=True)
-  return Response(serializer.data)
+class CategoryList(generics.ListAPIView):
+  queryset = Category.objects.all()
+  serializer_class = CategorySerializer
+  permission_classes = [IsAuthenticated]
+  pagination_class = SmallPagesPagination
 
 # categoryDetail
 @api_view(['GET'])
@@ -96,6 +98,12 @@ def itemList(request):
   if request.method == "GET":
     serializer = ItemSerializer(items, many=True)
   return Response(serializer.data)
+
+class ItemList(generics.ListAPIView):
+  queryset = Item.objects.all()
+  serializer_class = ItemSerializer
+  permission_classes = [IsAuthenticated]
+  pagination_class = SmallPagesPagination
 
 # Single Item Details
 @api_view(['GET'])

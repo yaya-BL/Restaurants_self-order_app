@@ -37,6 +37,7 @@ class Item(models.Model):
 class Cart(models.Model):
   user = models.OneToOneField(User, related_name='cart', on_delete=models.CASCADE)
   date_added = models.DateTimeField(auto_now_add=True)
+  item = models.ManyToManyField(Item, related_name="cartItemsTest")
 
   def __str__(self):
     return self.user.username

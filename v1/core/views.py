@@ -41,3 +41,4 @@ def signUp(request):
         else:
             data = serializer.errors
         return Response(data)
+
