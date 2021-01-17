@@ -11,7 +11,7 @@ from rest_framework.decorators import api_view, permission_classes
 from .serializers import ShopSerializer
 # Model Class imports
 from django.contrib.auth.models import User
-from v1.core.models import Userprofile
+from v1.core.models import UserProfile
 from .models import Shop
 
 # APIs for Shop

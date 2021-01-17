@@ -27,7 +27,7 @@ SECRET_KEY = '0s-b^agz!&i1$oiq01cc4(-u_12h-cch%wzy-^yfp)#+)zu$6('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS =  ['app.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS =  ['*']
 
 
 # Application definition
@@ -56,12 +56,11 @@ AUTHENTICATION_BACKENDS = [
 DJOSER = {
     'USER_CREATE_PASSWORD_RETYPE': True,
     'ACTIVATION_URL': '#/activate/{uid}/{token}',
-    'SEND_CONFIRMATION_EMAIL': True,
+    'SEND_ACTIVATION_EMAIL': True,
+    #'SEND_CONFIRMATION_EMAIL': True,
     'SET_PASSWORD_RETYPE': True,
     'PASSWORD_RESET_CONFIRM_RETYPE': True,
 }
-
-USER_CREATE_PASSWORD_RETYPE = True
 
 SITE_ID = 1
 
