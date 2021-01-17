@@ -1,11 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
-from v1.shop.models import Cafe
+from v1.shop.models import Shop
 
 # Food Category model
 class Category(models.Model):
   user = models.ForeignKey(User, related_name="category", blank=True, null=True, on_delete=models.CASCADE)
-  cafe = models.ForeignKey(Cafe, related_name="category", blank=True, null=True, on_delete=models.CASCADE)
+  shop = models.ForeignKey(Shop, related_name="category", blank=True, null=True, on_delete=models.CASCADE)
   name = models.CharField(max_length=255)
   
   class Meta:
@@ -17,8 +17,8 @@ class Category(models.Model):
 # Food Item model
 class Item(models.Model):
 
-  cafe = models.ForeignKey(Cafe, related_name="item", on_delete=models.CASCADE)
-  category = models.ForeignKey(Category, related_name="item", on_delete=models.CASCADE)
+  shop = models.ForeignKey(Shop, related_name="item",blank=True, null=True, on_delete=models.CASCADE)
+  category = models.ForeignKey(Category, related_name="item",blank=True, null=True, on_delete=models.CASCADE)
   user = models.ForeignKey(User, related_name="item",blank=True, null=True, on_delete=models.CASCADE)
   
   name = models.CharField(max_length=255)
@@ -37,6 +37,7 @@ class Item(models.Model):
 class Cart(models.Model):
   user = models.OneToOneField(User, related_name='cart', on_delete=models.CASCADE)
   date_added = models.DateTimeField(auto_now_add=True)
+  item = models.ManyToManyField(Item, related_name="cartItemsTest")
 
   def __str__(self):
     return self.user.username

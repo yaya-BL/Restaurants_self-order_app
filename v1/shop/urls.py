@@ -5,5 +5,5 @@ from rest_framework.authtoken.views import obtain_auth_token
 urlpatterns = [
   path('', views.apiOverview, name="api-overview"),
   # authentication apis
-  path('createCafe', views.createCafe, name="createCafe"),
+  path('add', views.createShop, name="createCafe"),
 ]
