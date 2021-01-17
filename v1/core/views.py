@@ -9,7 +9,7 @@ from rest_framework.authtoken.models import Token
 # Serializer Class imports
 from .serializers import SignupSerializer 
 # Model Class imports
-from .models import Userprofile
+from .models import UserProfile
 
 # Website home page method
 def home(request):

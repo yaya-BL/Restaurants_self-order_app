@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 # Model Class imports
-from .models import Userprofile
+from .models import UserProfile
 
 
 class SignupSerializer(serializers.ModelSerializer):
