@@ -14,10 +14,9 @@ class Shop(models.Model):
     (CAFE, 'cafe'),
     (RESTAURANT, 'restaurant')
   )
-
   
   name = models.CharField(max_length=255)
-  user = models.OneToOneField(User, related_name='shop',blank=True, null=True, on_delete=models.CASCADE)
+  user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='shop',blank=True, null=True, on_delete=models.CASCADE)
   address = models.TextField(blank=True, null=True)
   types = models.CharField(max_length=20, choices=CHOICES_TYPES, default=CAFE)
 

@@ -1,9 +1,9 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 # Model Class imports
-from .models import UserProfile
+#from .models import UserProfile
 
-
+'''
 class SignupSerializer(serializers.ModelSerializer):
   password2 = serializers.CharField(style={'input_type':'password'}, write_only=True)
   
@@ -37,4 +37,4 @@ class SignupSerializer(serializers.ModelSerializer):
           return signup
     else:
       raise serializers.ValidationError({'password': 'Both Passwords Must Be Matched!'})
-    
+    '''

@@ -11,7 +11,7 @@ from rest_framework.decorators import api_view, permission_classes
 from .serializers import ShopSerializer
 # Model Class imports
 from django.contrib.auth.models import User
-from v1.core.models import UserProfile
+#from v1.core.models import UserProfile
 from .models import Shop
 
 # APIs for Shop
@@ -33,8 +33,8 @@ def createShop(request):
         if serializer.is_valid():
             serializer.save(user=request.user)
             plan = 'seller'
-            request.user.userprofile.plan = plan
-            request.user.userprofile.save()
+            #request.user.userprofile.plan = plan
+            #request.user.userprofile.save()
             data["success"] = "Congratulations! Now You Upload Items!"
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
