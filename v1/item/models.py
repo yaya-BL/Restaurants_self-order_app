@@ -1,10 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 from v1.shop.models import Shop
 
 # Food Category model
 class Category(models.Model):
-  user = models.ForeignKey(User, related_name="category", blank=True, null=True, on_delete=models.CASCADE)
+  user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="category", blank=True, null=True, on_delete=models.CASCADE)
   shop = models.ForeignKey(Shop, related_name="category", blank=True, null=True, on_delete=models.CASCADE)
   name = models.CharField(max_length=255)
   
@@ -16,10 +16,9 @@ class Category(models.Model):
 
 # Food Item model
 class Item(models.Model):
-
   shop = models.ForeignKey(Shop, related_name="item",blank=True, null=True, on_delete=models.CASCADE)
   category = models.ForeignKey(Category, related_name="item",blank=True, null=True, on_delete=models.CASCADE)
-  user = models.ForeignKey(User, related_name="item",blank=True, null=True, on_delete=models.CASCADE)
+  user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="item",blank=True, null=True, on_delete=models.CASCADE)
   
   name = models.CharField(max_length=255)
   price = models.FloatField()
@@ -35,7 +34,7 @@ class Item(models.Model):
 
 # Order Cart model
 class Cart(models.Model):
-  user = models.OneToOneField(User, related_name='cart', on_delete=models.CASCADE)
+  user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='cart', on_delete=models.CASCADE)
   date_added = models.DateTimeField(auto_now_add=True)
   item = models.ManyToManyField(Item, related_name="cartItemsTest")
 

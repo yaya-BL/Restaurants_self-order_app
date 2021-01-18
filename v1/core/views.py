@@ -7,9 +7,9 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.authtoken.models import Token
 # Serializer Class imports
-from .serializers import SignupSerializer 
+#from .serializers import SignupSerializer 
 # Model Class imports
-from .models import UserProfile
+#from .models import UserProfile
 
 # Website home page method
 def home(request):
@@ -23,7 +23,7 @@ def apiOverview(request):
     'User Sign In':'/sign-in',
     }
   return Response(api_urls)
-
+'''
 @api_view(['POST'])
 def signUp(request):
     if request.method == "POST":
@@ -42,3 +42,4 @@ def signUp(request):
             data = serializer.errors
         return Response(data)
 
+'''
