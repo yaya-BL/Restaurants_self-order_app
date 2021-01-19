@@ -7,6 +7,9 @@ from django.contrib.auth.hashers import make_password
 from django.apps import apps
 import uuid
 
+# CustomUserManager extended from BaseUserManager
+# removed the username field from create_user function since 
+# no email should be required to create user and superuser
 class CustomUserManager(BaseUserManager):
     use_in_migrations = True
 
@@ -72,6 +75,9 @@ class Country(models.Model):
   name = models.CharField(max_length = 50)
   alpha_two_code = models.CharField(max_length = 2)
 
+# custom User model with addditional fields of country, gender, phone and UserType
+# changed the username field to email since we will use email for authentication 
+# and registration
 class User(AbstractUser):
   GenderChoices = [
     ('M', 'Male'),
@@ -101,7 +107,8 @@ class User(AbstractUser):
   def get_username(self):
     return self.email
     
-
+# generate a random username and check if its already taken. 
+# If taken, generate a username again until we find a valid username
 def generate_username(instance):
   val = uuid.uuid4().hex[:30]
   x=0
@@ -120,4 +127,5 @@ def pre_save_post_receiver(sender, instance, *args,**kwargs):
   if not instance.username:
     instance.username= generate_username(instance)
 
+#save the username before the User model is saved with the unique username
 models.signals.pre_save.connect(pre_save_post_receiver, sender=User)
