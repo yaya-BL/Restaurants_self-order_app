@@ -78,22 +78,22 @@ class Country(models.Model):
 # custom User model with addditional fields of country, gender, phone and UserType
 # changed the username field to email since we will use email for authentication 
 # and registration
+class UserType(models.Model):
+    name = models.CharField(max_length=16)
+
+    def __str__(self):
+        return self.name
+
 class User(AbstractUser):
   GenderChoices = [
     ('M', 'Male'),
     ('F', 'Female'),
     ('N', 'Don\'t Specify'),
   ]
-  UserTypeChoices = [
-    ('C', 'Customer'),
-    ('A', 'Admin'),
-    ('M', 'Manager'),
-  ]
-  
   email = models.EmailField(verbose_name='email', unique=True, max_length=255)
   phone = models.CharField(null=True, max_length=50)
   country = models.ForeignKey(Country, on_delete=models.DO_NOTHING, blank=True, null=True)
-  user_type = models.CharField(max_length=1, choices=UserTypeChoices, default='C')
+  user_type = models.ForeignKey(UserType, on_delete=models.DO_NOTHING, default=4)
   gender = models.CharField(
         max_length=1,
         choices=GenderChoices,
