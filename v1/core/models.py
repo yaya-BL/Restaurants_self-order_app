@@ -75,6 +75,10 @@ class Country(models.Model):
   name = models.CharField(max_length = 50)
   alpha_two_code = models.CharField(max_length = 2)
 
+  def __str__(self):
+      return self.name
+  
+
 # custom User model with addditional fields of country, gender, phone and UserType
 # changed the username field to email since we will use email for authentication 
 # and registration
@@ -129,3 +133,4 @@ def pre_save_post_receiver(sender, instance, *args,**kwargs):
 
 #save the username before the User model is saved with the unique username
 models.signals.pre_save.connect(pre_save_post_receiver, sender=User)
+
