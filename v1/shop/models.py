@@ -13,6 +13,7 @@ class BranchType(models.Model):
 class Shop(models.Model):
   name = models.CharField(max_length=255)
   owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+  image = models.ImageField(upload_to='uploads/shop/', blank=True, null=True)
 
   def __str__(self):
     return self.name
