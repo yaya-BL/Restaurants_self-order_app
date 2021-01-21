@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -31,6 +30,7 @@ class ShopBranch(models.Model):
   branch_type = models.ForeignKey(BranchType, on_delete=models.DO_NOTHING,blank=True, null=True)
   location = models.CharField(max_length=255, blank=True, null=True)
   city = models.CharField(max_length=255)
+  state = models.CharField(max_length=255, blank=True, null=True)
   country = models.ForeignKey(Country, on_delete=models.DO_NOTHING)
   description = models.TextField()
   opening_time = models.TimeField()
