@@ -1,27 +1,41 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 
+class BranchType(models.Model):
+  name = models.CharField(max_length=16)
 
-class Shop(models.Model):
-  CAFE ='cafe'
-  RESTAURANT = 'restaurant'
-
-  CHOICES_TYPES = (
-    (CAFE, 'cafe'),
-    (RESTAURANT, 'restaurant')
-  )
-  
-  name = models.CharField(max_length=255)
-  user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='shop',blank=True, null=True, on_delete=models.CASCADE)
-  address = models.TextField(blank=True, null=True)
-  types = models.CharField(max_length=20, choices=CHOICES_TYPES, default=CAFE)
-
-  class Meta:
-    verbose_name_plural='Shop'
-    
   def __str__(self):
     return self.name
+
+class Shop(models.Model):
+  name = models.CharField(max_length=255)
+  owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+  image = models.ImageField(upload_to='uploads/shop/', blank=True, null=True)
+
+  def __str__(self):
+    return self.name
+
+class Country(models.Model):
+  name = models.CharField(max_length = 255)
+  alpha_two_code = models.CharField(max_length = 2, blank=True, null=True)
+
+  def __str__(self):
+      return self.name
+  
+
+class ShopBranch(models.Model):
+  shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
+  branch_type = models.ForeignKey(BranchType, on_delete=models.DO_NOTHING,blank=True, null=True)
+  location = models.CharField(max_length=255, blank=True, null=True)
+  city = models.CharField(max_length=255)
+  state = models.CharField(max_length=255, blank=True, null=True)
+  country = models.ForeignKey(Country, on_delete=models.DO_NOTHING)
+  description = models.TextField()
+  opening_time = models.TimeField()
+  closing_time = models.TimeField()
+
+def __str__(self):
+    return self.shop.name
