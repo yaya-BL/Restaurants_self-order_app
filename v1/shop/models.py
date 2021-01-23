@@ -25,7 +25,6 @@ class Country(models.Model):
   def __str__(self):
       return self.name
   
-
 class ShopBranch(models.Model):
   shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
   branch_type = models.ForeignKey(BranchType, on_delete=models.DO_NOTHING,blank=True, null=True)
