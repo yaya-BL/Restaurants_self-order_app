@@ -9,12 +9,12 @@ from rest_framework import mixins
 
 # Serializer Class imports
 from .serializers import ShopSerializer, ShopBranchSerializer
-from .models import Shop
+from .models import Shop, ShopBranch, UserBranch
 
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.generics import GenericAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 
-from .permissions import ShopEditDelete, ShopBranchCreate
+from .permissions import ShopEditDelete, ShopBranchCreate, ShopBranchUpdate
 
 #create Shop
 class ShopCreateAPIView(CreateAPIView, GenericAPIView):
@@ -42,3 +42,8 @@ class ShopDeleteAPIView(DestroyAPIView, GenericAPIView):
 class BranchCreateAPIView(CreateAPIView, GenericAPIView):
   serializer_class = ShopBranchSerializer
   permission_classes = [ShopBranchCreate]
+
+class BranchUpdateAPIView(UpdateAPIView, GenericAPIView):
+  queryset = ShopBranch.objects.all()
+  serializer_class = ShopBranchSerializer
+  permission_classes = [ShopBranchUpdate]
