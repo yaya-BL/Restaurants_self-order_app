@@ -27,7 +27,7 @@ class Country(models.Model):
   
 class ShopBranch(models.Model):
   shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
-  branch_type = models.ForeignKey(BranchType, on_delete=models.DO_NOTHING,blank=True, null=True)
+  branch_type = models.ForeignKey(BranchType, on_delete=models.DO_NOTHING)
   location = models.CharField(max_length=255, blank=True, null=True)
   city = models.CharField(max_length=255)
   state = models.CharField(max_length=255, blank=True, null=True)

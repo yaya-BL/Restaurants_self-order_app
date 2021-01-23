@@ -8,18 +8,17 @@ from rest_framework import generics
 from rest_framework import mixins
 
 # Serializer Class imports
-from .serializers import ShopSerializer
+from .serializers import ShopSerializer, ShopBranchSerializer
 from .models import Shop
 
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.generics import GenericAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 
-from v1.third_party.rest_framework.permissions import ShopEditDelete
+from .permissions import ShopEditDelete, ShopBranchCreate
 
 #create Shop
 class ShopCreateAPIView(CreateAPIView, GenericAPIView):
   serializer_class = ShopSerializer
-  queryset = Shop.objects.all()
 
   def perform_create(self, serializer):
     serializer.save(owner=self.request.user)
@@ -39,3 +38,7 @@ class ShopDeleteAPIView(DestroyAPIView, GenericAPIView):
     queryset = Shop.objects.all()
     serializer_class = ShopSerializer
     permission_classes = [ShopEditDelete]
+  
+class BranchCreateAPIView(CreateAPIView, GenericAPIView):
+  serializer_class = ShopBranchSerializer
+  permission_classes = [ShopBranchCreate]
