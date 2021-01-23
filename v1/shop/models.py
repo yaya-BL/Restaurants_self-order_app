@@ -14,6 +14,7 @@ class Shop(models.Model):
   name = models.CharField(max_length=255)
   owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
   image = models.ImageField(upload_to='uploads/shop/', blank=True, null=True)
+  is_verified = models.BooleanField(default= False)
 
   def __str__(self):
     return self.name
@@ -36,6 +37,10 @@ class ShopBranch(models.Model):
   opening_time = models.TimeField()
   closing_time = models.TimeField()
 
+  def __str__(self):
+      return self.shop.name
+  
+
 def __str__(self):
     return self.shop.name
 
@@ -53,7 +58,7 @@ class UserBranch(models.Model):
   perm = models.IntegerField(choices=PermChoices, default=0)
 
   def __str__(self):
-    return self.branch.name + ", " + self.user.email + ": " + str(self.perm)
+    return self.branch.location + ", " + self.user.email + ": " + str(self.perm)
 
   class Meta:
     unique_together = ['user', 'branch']
