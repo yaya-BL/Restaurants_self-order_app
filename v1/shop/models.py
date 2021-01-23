@@ -39,3 +39,22 @@ class ShopBranch(models.Model):
 
 def __str__(self):
     return self.shop.name
+
+# model to handle the relationship between a User and
+# a particular branch for authorization
+class UserBranch(models.Model):
+  PermChoices = [
+        (0, 'Read'),
+        (1, 'Create'),
+        (2, 'Update'),
+        (3, 'Delete')
+    ]
+  user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+  branch = models.ForeignKey(ShopBranch, on_delete=models.CASCADE)
+  perm = models.IntegerField(choices=PermChoices, default=0)
+
+  def __str__(self):
+    return self.branch.name + ", " + self.user.email + ": " + str(self.perm)
+
+  class Meta:
+    unique_together = ['user', 'branch']
