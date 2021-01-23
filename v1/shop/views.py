@@ -12,38 +12,30 @@ from .serializers import ShopSerializer
 from .models import Shop
 
 from rest_framework.viewsets import GenericViewSet
+from rest_framework.generics import GenericAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 
-# APIs for Shop
-@api_view(['GET'])
-def apiOverview(request):
-  api_urls = {
-    'Shop Create':'/createShop',
-    }
-  return Response(api_urls)
-'''
-# create Shop
-@api_view(['POST'])
-@permission_classes((IsAuthenticated,))
-def createShop(request):
-    if request.method == "POST":
-        print(request.user.id)
-        serializer = ShopSerializer(data=request.data)
-        data={}
-        if serializer.is_valid():
-            serializer.save(user=request.user)
-            plan = 'seller'
-            #request.user.userprofile.plan = plan
-            #request.user.userprofile.save()
-            data["success"] = "Congratulations! Now You Upload Items!"
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)'''
+from v1.third_party.rest_framework.permissions import ShopEditDelete
 
 #create Shop
-class ShopCreateAPIView(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.ListModelMixin, GenericViewSet):
+class ShopCreateAPIView(CreateAPIView, GenericAPIView):
   serializer_class = ShopSerializer
   queryset = Shop.objects.all()
 
   def perform_create(self, serializer):
     serializer.save(owner=self.request.user)
-  
+
   permission_classes = [IsAuthenticated]
+
+#edit the Shop
+#only owner of the shop can edit the shop
+class ShopEditAPIView(UpdateAPIView, GenericAPIView):
+    queryset = Shop.objects.all()
+    serializer_class = ShopSerializer
+    permission_classes = [ShopEditDelete]
+
+#delete the shop
+#only owner of the shop can delete shop
+class ShopDeleteAPIView(DestroyAPIView, GenericAPIView):
+    queryset = Shop.objects.all()
+    serializer_class = ShopSerializer
+    permission_classes = [ShopEditDelete]
