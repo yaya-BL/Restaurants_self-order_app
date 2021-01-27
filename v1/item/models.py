@@ -1,11 +1,10 @@
 from django.db import models
 from django.conf import settings
-from v1.shop.models import Shop
+from v1.shop.models import Shop, ShopBranch
 
 # Food Category model
 class Category(models.Model):
-  user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="category", blank=True, null=True, on_delete=models.CASCADE)
-  shop = models.ForeignKey(Shop, related_name="category", blank=True, null=True, on_delete=models.CASCADE)
+  branch = models.ForeignKey(ShopBranch, on_delete=models.CASCADE, blank=True, null=True)
   name = models.CharField(max_length=255)
   
   class Meta:
@@ -22,9 +21,10 @@ class Item(models.Model):
   
   name = models.CharField(max_length=255)
   price = models.FloatField()
-  description = models.TextField(blank=True, null=True)
+  description = models.TextField()
   image = models.ImageField(upload_to='uploads/', blank=True, null=True)
   date_added = models.DateTimeField(auto_now_add=True)
+  prepare_time = models.IntegerField(default = 0)
   
   class Meta:
     ordering = ('-date_added',)
@@ -42,7 +42,7 @@ class Cart(models.Model):
     return self.user.username
 
 # Order Cart Item model
-class CartItems(models.Model):
+class CartItem(models.Model):
   cart = models.ForeignKey(Cart, related_name="cartItems", on_delete=models.CASCADE)
   item = models.ForeignKey(Item, related_name="cartItems", on_delete=models.CASCADE)
 
