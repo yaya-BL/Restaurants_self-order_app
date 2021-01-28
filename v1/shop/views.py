@@ -14,7 +14,7 @@ from .models import Shop, ShopBranch, UserBranch
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.generics import GenericAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 
-from .permissions import ShopEditDelete, ShopBranchCreate, ShopBranchUpdate
+from .permissions import ShopEditDelete, ShopBranchCreate, ShopBranchUpdate, ShopBranchDelete
 
 #create Shop
 class ShopCreateAPIView(CreateAPIView, GenericAPIView):
@@ -49,3 +49,8 @@ class BranchUpdateAPIView(UpdateAPIView, GenericAPIView):
   queryset = ShopBranch.objects.all()
   serializer_class = ShopBranchSerializer
   permission_classes = [ShopBranchUpdate]
+
+class BranchDeleteAPIView(DestroyAPIView, GenericAPIView):
+    queryset = ShopBranch.objects.all()
+    serializer_class = ShopBranchSerializer
+    permission_classes = [ShopBranchDelete]
