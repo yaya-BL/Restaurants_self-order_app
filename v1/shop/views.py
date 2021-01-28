@@ -32,17 +32,19 @@ class ShopEditAPIView(UpdateAPIView, GenericAPIView):
     serializer_class = ShopSerializer
     permission_classes = [ShopEditDelete]
 
-#delete the shop
-#only owner of the shop can delete shop
+# delete the shop
+# only owner of the shop can delete shop
 class ShopDeleteAPIView(DestroyAPIView, GenericAPIView):
     queryset = Shop.objects.all()
     serializer_class = ShopSerializer
     permission_classes = [ShopEditDelete]
-  
+
+# branch create view  
 class BranchCreateAPIView(CreateAPIView, GenericAPIView):
   serializer_class = ShopBranchSerializer
   permission_classes = [ShopBranchCreate]
 
+# branch update view
 class BranchUpdateAPIView(UpdateAPIView, GenericAPIView):
   queryset = ShopBranch.objects.all()
   serializer_class = ShopBranchSerializer

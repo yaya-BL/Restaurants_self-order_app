@@ -1,6 +1,7 @@
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 from .models import Shop, UserBranch, ShopBranch
 
+# check if a user has permission to edit a shop
 class ShopEditDelete(BasePermission):
 
     def has_permission(self, request, view):
@@ -11,6 +12,8 @@ class ShopEditDelete(BasePermission):
         """Object level permission, allow editing self"""
         return self.has_permission(request, view) and request.user == obj.owner
 
+# check if a user has permission to create a shop branch
+# only the owner of the shop can create another branch
 class ShopBranchCreate(BasePermission):
 
     def has_permission(self, request, view):
@@ -23,6 +26,8 @@ class ShopBranchCreate(BasePermission):
         """Object level permission, allow editing self"""
         return self.has_permission(request, view)
     
+# check if a user has permission to edit a shop branch
+# shop owner or the user with admin permission can edit a shop branch
 class ShopBranchUpdate(BasePermission):
 
     def has_permission(self, request, view):
