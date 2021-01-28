@@ -32,8 +32,8 @@ class ShopBranchUpdate(BasePermission):
         """Object level permission, allow editing self"""
         flag = False
         if UserBranch.objects.filter(user=request.user, branch=obj).exists():
-            perm = UserBranch.objects.get(user=request.user, branch=obj).perm
-            if perm == 1 or perm == 2 or perm == 3:
+            permission = UserBranch.objects.get(user=request.user, branch=obj).permission
+            if permission == 1 or permission == 2 or permission == 3:
                 flag = True
         if Shop.objects.filter(shopbranch=obj, owner= request.user).exists():
             flag = True
