@@ -38,9 +38,7 @@ class BranchViewSet(viewsets.ModelViewSet):
   def get_permissions(self):
     if self.action == 'create':
         return [ShopBranchCreate(), ] 
-    elif self.action == 'update':
-        return [ShopBranchUpdate(), ] 
-    elif self.action == 'partial_update':
+    elif self.action == 'update' or self.action == 'partial_update':
         return [ShopBranchUpdate(), ] 
     elif self.action == 'destroy':
         return [ShopBranchDelete(), ] 

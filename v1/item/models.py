@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from v1.shop.models import Shop, ShopBranch
+from v1.core.models import User
 
 # Food Category model
 class Category(models.Model):
@@ -21,6 +22,8 @@ class Item(models.Model):
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
   prepare_time = models.IntegerField(default = 0)
+  created_by = models.ForeignKey(User, related_name='created_by', on_delete=models.CASCADE, blank=True, null=True)
+  updated_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
   def discounted_price(self):
     return self.price - self.discount
