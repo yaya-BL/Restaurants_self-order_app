@@ -57,7 +57,7 @@ class UserBranch(models.Model):
   branch = models.ForeignKey(ShopBranch, on_delete=models.CASCADE)
 
   def __str__(self):
-    return self.branch.location + ", " + self.user.email + ": " + str(self.permission)
+    return self.user.email + ": " + str(self.permission)
 
   class Meta:
     unique_together = ['user', 'branch']
