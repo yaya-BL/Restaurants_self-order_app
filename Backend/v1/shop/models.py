@@ -4,12 +4,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 
-class BranchType(models.Model):
-  name = models.CharField(max_length=16)
-
-  def __str__(self):
-    return self.name
-
 class Shop(models.Model):
   name = models.CharField(max_length=255)
   owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -25,6 +19,12 @@ class Country(models.Model):
 
   def __str__(self):
       return self.name
+
+class BranchType(models.Model):
+  name = models.CharField(max_length=16)
+
+  def __str__(self):
+    return self.name
   
 class ShopBranch(models.Model):
   shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
@@ -39,7 +39,6 @@ class ShopBranch(models.Model):
 
   def __str__(self):
       return self.shop.name
-  
 
 def __str__(self):
     return self.shop.name
@@ -47,18 +46,18 @@ def __str__(self):
 # model to handle the relationship between a User and
 # a particular branch for authorization
 class UserBranch(models.Model):
-  PermChoices = [
-        (0, 'Read'),
-        (1, 'Create'),
-        (2, 'Update'),
-        (3, 'Delete')
+  PermissionChoices = [
+        (0, 'Viewer'),      # viewer is the employee of the shopBranch. can view, manage all the orders
+        (1, 'Moderator'),   # has CRU permission for catogery, items and has ^ permission
+        (2, 'Editor'),      # has CRUD permission for catogery, items and has ^ permission
+        (3, 'Admin')        # can edit branch, assign permission to other users and has ^ permission
     ]
   user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+  permission = models.IntegerField(choices=PermissionChoices, default=0)
   branch = models.ForeignKey(ShopBranch, on_delete=models.CASCADE)
-  perm = models.IntegerField(choices=PermChoices, default=0)
 
   def __str__(self):
-    return self.branch.location + ", " + self.user.email + ": " + str(self.perm)
+    return self.user.email + ": " + str(self.permission)
 
   class Meta:
     unique_together = ['user', 'branch']
