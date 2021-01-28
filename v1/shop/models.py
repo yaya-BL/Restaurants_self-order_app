@@ -4,12 +4,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 
-class BranchType(models.Model):
-  name = models.CharField(max_length=16)
-
-  def __str__(self):
-    return self.name
-
 class Shop(models.Model):
   name = models.CharField(max_length=255)
   owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -25,6 +19,12 @@ class Country(models.Model):
 
   def __str__(self):
       return self.name
+
+class BranchType(models.Model):
+  name = models.CharField(max_length=16)
+
+  def __str__(self):
+    return self.name
   
 class ShopBranch(models.Model):
   shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
@@ -47,10 +47,10 @@ def __str__(self):
 # a particular branch for authorization
 class UserBranch(models.Model):
   PermissionChoices = [
-        (0, 'Viewer'),
-        (1, 'Moderator'),
-        (2, 'Editor'),
-        (3, 'Admin')
+        (0, 'Viewer'),      # viewer is the employee of the shopBranch. can view, manage all the orders
+        (1, 'Moderator'),   # has CRU permission for catogery, items and has ^ permission
+        (2, 'Editor'),      # has CRUD permission for catogery, items and has ^ permission
+        (3, 'Admin')        # can edit branch, assign permission to other users and has ^ permission
     ]
   user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
   permission = models.IntegerField(choices=PermissionChoices, default=0)
