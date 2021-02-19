@@ -2,21 +2,21 @@ import React from 'react'
 import { Pressable, Text, TextInput, View } from 'react-native'
 import styles from './SignIn.style'
 
-const SignIn = ({}) => {
+const SignIn = ({recovery}) => {
     return(
         <>
             <View style={styles.container}>
                 <Text style={styles.title}>Welcome back!</Text>
                 <View style={styles.formContainer}>
                     <Text style={styles.formLabel}>Email</Text>
-                    <TextInput style={styles.textForm} placeholder='Your email address' placeholderTextColor='#33333350'/>
+                    <TextInput style={styles.textForm} placeholder='Your email address' placeholderTextColor='#33333370'/>
                 </View>
                 <View style={styles.formContainer}>
                     <Text style={styles.formLabel}>Password</Text>
-                    <TextInput style={styles.textForm} placeholder='Your password' placeholderTextColor='#33333350'/>
+                    <TextInput style={styles.textForm} placeholder='Your password' placeholderTextColor='#33333370'/>
                 </View>
                 <View style={styles.footerTextContainer}>
-                    <Text style={styles.footerText}>Forgot Password?</Text>
+                    <Text style={styles.footerText} onPress={recovery}>Forgot Password?</Text>
                 </View>
                 <Pressable style={styles.actionButton}>
                     <Text style={styles.actionText}>Login</Text>

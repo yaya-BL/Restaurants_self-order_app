@@ -6,7 +6,7 @@ export default StyleSheet.create({
       height: '100%'
   },
   menuSliderContainer: {
-    height: 382,
+    height: 341,
     backgroundColor: '#fff',
     borderRadius: 30,
     position: 'relative',

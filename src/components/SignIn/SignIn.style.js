@@ -6,8 +6,6 @@ export default StyleSheet.create({
     margin: 32,
   },
   title: {
-      marginTop: 15,
-      marginBottom: 25,
       fontSize: 22,
       fontWeight: '700',
       lineHeight: 25.3,
@@ -40,7 +38,7 @@ export default StyleSheet.create({
       paddingLeft: 25
   },
   actionButton: {
-      marginTop: 45,
+      marginTop: 30,
       height: 53,
       borderRadius: 8,
       backgroundColor: '#33CCFF',
