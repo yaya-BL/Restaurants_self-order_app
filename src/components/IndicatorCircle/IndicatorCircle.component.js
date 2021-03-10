@@ -12,7 +12,7 @@ const IndicatorCircle = ({count, current}) => {
             <View style={styles.ellipseContainer}>
                 {
                     Array(count - 1 + 1).fill().map((value, key)=>
-                        <SvgXml key={key} width="11" height="11" xml={Ellipse} fill={current == key ? '#33CCFF' : '#33CCFF60'} style={styles.ellipse}/>
+                        <SvgXml key={key} width="11" height="11" xml={Ellipse} fill={current == key ? '#F7A305' : '#33CCFF60'} style={styles.ellipse}/>
                     )
                 }
             </View>

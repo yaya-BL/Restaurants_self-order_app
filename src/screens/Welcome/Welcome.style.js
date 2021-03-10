@@ -11,14 +11,15 @@ export default StyleSheet.create({
   text: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#33333350',
+    color: '#33333370',
     textAlign: 'right'
   },
   textCenter: {
     textAlign: 'center'
   },
   imageHolder: {
-    flex: .4
+    flex: .4,
+    alignItems:'center'
   },
   image: {
     
@@ -29,12 +30,15 @@ export default StyleSheet.create({
   },
   footer: {
       flex: .3,
-      justifyContent: 'center',
   },
   footerContent: {
-    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
+  },
+  footerContent2: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent:'space-evenly'
   },
   title: {
     fontWeight: '700',
@@ -42,7 +46,8 @@ export default StyleSheet.create({
     fontSize: 22
   },
   rightActions: {
-    flexDirection:'row'
+    flexDirection:'row',
+    justifyContent:'space-between'
   },
   circleButton: {
       height: 45,
@@ -59,13 +64,15 @@ export default StyleSheet.create({
   },
   button: {
     height: 53,
-    backgroundColor: '#33CCFF',
+    width: 156,
+    backgroundColor: '#F27621',
     borderRadius: 8,
+    marginLeft: 14,
     marginBottom: 18,
     justifyContent: 'center'
   },
   altButton: {
-    backgroundColor: '#33CCFF10'
+    backgroundColor: '#F7A305'
   },
   buttonText: {
       textAlign: 'center',
@@ -75,5 +82,18 @@ export default StyleSheet.create({
   },
   altButtonText: {
       color: '#000'
+  },
+  buttonStyle: {
+    width:156, 
+    height:51, 
+    borderRadius:5, 
+    backgroundColor:'#F27621', 
+    marginTop:81, 
+    justifyContent:'center'
+  },
+  buttonTextStyle: {
+    textAlign:'center',
+    fontSize:16,
+    color:'#fff'
   }
 })

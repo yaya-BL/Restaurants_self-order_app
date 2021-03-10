@@ -5,7 +5,7 @@ export default StyleSheet.create({
     flexDirection:'row',
   },
   ellipse: {
-      marginRight: 8
+      marginRight: 19
   },
   footerContainer: {
       flexDirection: 'row',
